@@ -9,13 +9,11 @@
 
 @implementation UIViewController (FromNib)
 
-+ (instancetype)viewControllerFromNib
-{
++ (instancetype)viewControllerFromNib {
     return [self viewControllerFromNib:NSStringFromClass([self class])];
 }
 
-+ (instancetype)viewControllerFromNib:(NSString*)inNibName
-{
++ (instancetype)viewControllerFromNib:(NSString*)inNibName {
     // xib ではなく nib で探さないと見つからない
     // また、[UINib nibWithNibName:bundle:] では、存在しない inNibName でもなんらかの値が返ってきてしまって、判別に使えなかった
     NSString* nibPath = [[NSBundle mainBundle] pathForResource:inNibName ofType:@"nib"];
@@ -32,8 +30,11 @@
     return viewController;
 }
 
-+ (instancetype)viewControllerFromStoryboard:(NSString*)inStoryboardName
-{
++ (instancetype)viewControllerFromStoryboard {
+    return [self viewControllerFromStoryboard:NSStringFromClass([self class])];
+}
+
++ (instancetype)viewControllerFromStoryboard:(NSString*)inStoryboardName {
     // 指定された Storyboard のクラス名と同じ Storyboard ID を持つものを対象とする
     UIStoryboard* storyboard = [UIStoryboard storyboardWithName:inStoryboardName bundle:nil];
     NSString* storyboardId = NSStringFromClass(self);

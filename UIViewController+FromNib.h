@@ -15,6 +15,9 @@
 /// nib 名指定
 + (instancetype)viewControllerFromNib:(NSString*)inNibName;
 
+/// クラス名と storyboard 名が同じ前提
++ (instancetype)viewControllerFromStoryboard;
+
 /// Storyboard 名指定（指定 Storyboard 内のクラス名と同じ Storyboard ID を持っているものが対象）
 + (instancetype)viewControllerFromStoryboard:(NSString*)inStoryboardName;
 
