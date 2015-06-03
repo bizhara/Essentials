@@ -41,7 +41,7 @@
     return [self dictionaryWithValuesForKeys:propertyNames];
 }
 
-+ (void)setPropertyValues:(id)instance to:(NSDictionary *)propertyValues {
++ (void)setPropertyValues:(id)instance by:(NSDictionary *)propertyValues {
     NSArray *propertyNames = [self propertyNames:instance];
     for (NSString *propertyName in propertyNames) {
         id propertyValue = propertyValues[propertyName];
