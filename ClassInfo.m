@@ -29,7 +29,7 @@
     
     free(properties);
     
-    return [NSArray arrayWithArray:propertyNames];
+    return [propertyNames copy];
 }
 
 + (NSDictionary *)propertyValues:(id)instance {
@@ -43,10 +43,12 @@
 
 + (void)setPropertyValues:(id)instance by:(NSDictionary *)propertyValues {
     NSArray *propertyNames = [self propertyNames:instance];
-    for (NSString *propertyName in propertyNames) {
-        id propertyValue = propertyValues[propertyName];
-        if (propertyValue) {
-            [instance setValue:propertyValue forKey:propertyName];
+    @synchronized(instance) {
+        for (NSString *propertyName in propertyNames) {
+            id propertyValue = propertyValues[propertyName];
+            if (propertyValue) {
+                [instance setValue:propertyValue forKey:propertyName];
+            }
         }
     }
 }
