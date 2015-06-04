@@ -14,14 +14,14 @@
 }
 
 + (NSArray *)propertyNames:(id)instance {
-    NSMutableArray* propertyNames = [NSMutableArray array];
+    NSMutableArray *propertyNames = [NSMutableArray array];
     
     unsigned int propertyCount = 0;
-    objc_property_t* properties = class_copyPropertyList([instance class], &propertyCount);
+    objc_property_t *properties = class_copyPropertyList([instance class], &propertyCount);
     
     for (unsigned int index = 0; index < propertyCount; ++index) {
         objc_property_t property = properties[index];
-        const char* propertyName = property_getName(property);
+        const char *propertyName = property_getName(property);
         if (propertyName) {
             [propertyNames addObject:[NSString stringWithUTF8String:propertyName]];
         }
