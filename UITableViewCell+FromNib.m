@@ -18,13 +18,22 @@
 }
 
 + (CGFloat)cellHeight {
-    static UITableViewCell* cell;
+    static NSMutableDictionary* calculatedHeights;
     static dispatch_once_t once_t;
     dispatch_once(&once_t, ^{
-        UINib* nib = [UINib nibWithNibName:[self nibName] bundle:nil];
-        cell = (UITableViewCell*) [nib instantiateWithOwner:nil options:nil][0];
+        calculatedHeights = [NSMutableDictionary dictionary];
     });
-    return cell.frame.size.height;
+    
+    NSString* nibName = [self nibName];
+    CGFloat cellHeight = [calculatedHeights[nibName] floatValue];
+    if (cellHeight) {
+        return cellHeight;
+    }
+    UINib* nib = [UINib nibWithNibName:nibName bundle:nil];
+    UITableViewCell* cell = [nib instantiateWithOwner:nil options:nil][0];
+    cellHeight = cell.frame.size.height;
+    calculatedHeights[nibName] = [NSNumber numberWithFloat:cellHeight];
+    return cellHeight;
 }
 
 @end
