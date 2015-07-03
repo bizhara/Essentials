@@ -10,6 +10,6 @@
 
 /// イメージを内包しているボタン
 @interface UIButton (EmbededImage)
-- (void)makeLeftImageButton:(UIImage *)image title:(NSString *)title imageMarginLeft:(CGFloat)imageMarginLeft;
+- (void)makeLeftImageButton:(UIImage *)image title:(NSString *)title;
 
 @end
