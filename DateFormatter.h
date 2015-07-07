@@ -11,5 +11,6 @@
 /// 日付フォーマット
 @interface DateFormatter : NSObject
 + (NSDateFormatter *)sharedDateFormatter;
++ (NSDateComponents *)dateComponentFromDate:(NSDate *)date;
 
 @end

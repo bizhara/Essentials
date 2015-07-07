@@ -22,4 +22,14 @@
     return dateFormatter;
 }
 
++ (NSDateComponents *)dateComponentFromDate:(NSDate *)date {
+    static NSCalendar *sharedCalendar;
+    static dispatch_once_t dispatchOnceCalendar;
+    dispatch_once(&dispatchOnceCalendar, ^{
+        sharedCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    });
+    return [sharedCalendar components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay|NSCalendarUnitHour|NSCalendarUnitMinute|NSCalendarUnitSecond
+                             fromDate:date];
+}
+
 @end
