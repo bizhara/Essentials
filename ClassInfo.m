@@ -34,22 +34,22 @@
 
 + (NSDictionary *)propertyValues:(id)instance {
     NSArray *propertyNames = [self propertyNames:instance];
-    return [self propertyValuesFromNames:propertyNames];
-}
-
-+ (NSDictionary *)propertyValuesFromNames:(NSArray *)propertyNames {
-    return [self dictionaryWithValuesForKeys:propertyNames];
+    return [instance dictionaryWithValuesForKeys:propertyNames];
 }
 
 + (void)setPropertyValues:(id)instance by:(NSDictionary *)propertyValues {
-    NSArray *propertyNames = [self propertyNames:instance];
     @synchronized(instance) {
+        NSMutableDictionary *rightPropertys = [NSMutableDictionary dictionary];
+        
+        NSArray *propertyNames = [self propertyNames:instance];
         for (NSString *propertyName in propertyNames) {
             id propertyValue = propertyValues[propertyName];
             if (propertyValue) {
-                [instance setValue:propertyValue forKey:propertyName];
+                rightPropertys[propertyName] = propertyValue;
             }
         }
+        
+        [instance setValuesForKeysWithDictionary:rightPropertys];
     }
 }
 

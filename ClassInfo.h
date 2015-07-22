@@ -16,7 +16,6 @@
 
 /// Class の property を key と value のペアで返す
 + (NSDictionary *)propertyValues:(id)instance;
-+ (NSDictionary *)propertyValuesFromNames:(NSArray *)propertyNames;
 
 /// key と value のペアで示された property を Class に設定する
 + (void)setPropertyValues:(id)instance by:(NSDictionary *)propertyValues;
