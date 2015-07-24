@@ -25,4 +25,11 @@
 #define ULOG(...)
 #endif
 
+/// View の枠付け
+#ifdef DEBUG
+#define FRAME_VIEW(view) view.layer.borderColor = [UIColor redColor].CGColor; view.layer.borderWidth = 1;
+#else
+#define FRAME_VIEW(view)
+#endif
+
 #endif // DebugHelper_h
