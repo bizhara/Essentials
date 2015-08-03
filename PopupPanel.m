@@ -32,4 +32,47 @@
     return UIModalPresentationNone;
 }
 
+/* 下記クラスを用意して self.popoverPresentationController.popoverBackgroundViewClass に設定してあげると
+ 四角形のポップアップにすることができる（標準はラウンドレクト）
+ 
+ @interface RectBackgroundView : UIPopoverBackgroundView
+ 
+ @end
+ 
+ @implementation RectBackgroundView
+ + (CGFloat)arrowBase {
+    return 0;
+ }
+ 
+ + (CGFloat)arrowHeight {
+    return 0;
+ }
+ 
+ + (UIEdgeInsets)contentViewInsets {
+    return UIEdgeInsetsZero;
+ }
+ 
+ - (instancetype)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
+    self.backgroundColor = [UIColor whiteColor];
+    return self;
+ }
+ 
+ - (CGFloat)arrowOffset {
+    return 0;
+ }
+ 
+ - (void)setArrowOffset:(CGFloat)arrowOffset {
+ }
+ 
+ - (UIPopoverArrowDirection)arrowDirection {
+    return 0;
+ }
+ 
+ - (void)setArrowDirection:(UIPopoverArrowDirection)arrowDirection {
+ }
+ 
+ @end
+ */
+
 @end
