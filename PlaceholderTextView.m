@@ -38,7 +38,7 @@
     [self.placeholderLabel sizeToFit];
     UIEdgeInsets margin = self.textContainerInset;
     CGRect frame = self.placeholderLabel.frame;
-    frame.origin.x += (margin.left == 0) ? ADJUST_X : margin.left;
+    frame.origin.x += (margin.left + ADJUST_X);
     frame.origin.y += margin.top;
     self.placeholderLabel.frame = frame;
     
