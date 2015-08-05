@@ -28,6 +28,10 @@
                                                object:nil];
 }
 
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (NSString *)placeholder {
     return self.placeholderLabel.text;
 }
