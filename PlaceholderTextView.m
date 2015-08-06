@@ -5,9 +5,11 @@
 //
 
 #import "PlaceholderTextView.h"
+#import "UIColor+HexColor.h"
 
 @interface PlaceholderTextView ()
 #define ADJUST_X 4
+#define TEXT_COLOR @"#c7c7c7"
 
 @property (strong, nonatomic) UILabel *placeholderLabel;
 
@@ -19,7 +21,8 @@
     [super awakeFromNib];
     
     self.placeholderLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-    self.placeholderLabel.textColor = [UIColor lightGrayColor];
+    self.placeholderLabel.font = self.font;
+    self.placeholderLabel.textColor = [UIColor colorWithHexColor:TEXT_COLOR];
     [self addSubview:self.placeholderLabel];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -40,10 +43,9 @@
     self.placeholderLabel.text = placeholder;
     
     [self.placeholderLabel sizeToFit];
-    UIEdgeInsets margin = self.textContainerInset;
     CGRect frame = self.placeholderLabel.frame;
-    frame.origin.x += (margin.left + ADJUST_X);
-    frame.origin.y += margin.top;
+    frame.origin.x += (self.textContainerInset.left + ADJUST_X);
+    frame.origin.y += self.textContainerInset.top;
     self.placeholderLabel.frame = frame;
     
     self.placeholderLabel.hidden = (self.text.length > 0);
