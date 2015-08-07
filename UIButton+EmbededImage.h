@@ -11,5 +11,6 @@
 @interface UIButton (EmbededImage)
 - (void)makeLeftImageButton:(UIImage *)image title:(NSString *)title;
 - (void)makeRightImageButton:(UIImage *)image title:(NSString *)title;
+- (void)makeTopImageButton:(UIImage *)image title:(NSString *)title;
 
 @end

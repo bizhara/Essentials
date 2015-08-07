@@ -13,6 +13,9 @@
 #define IMAGE_MARGIN_RIGHT IMAGE_MARGIN_LEFT
 #define TITLE_MARGIN_RIGHT TITLE_MARGIN_LEFT
 
+#define IMAGE_MARGIN_TOP IMAGE_MARGIN_LEFT
+#define TITLE_MARGIN_TOP TITLE_MARGIN_LEFT
+
 @implementation UIButton (EmbededImage)
 
 - (void)makeLeftImageButton:(UIImage *)image title:(NSString *)title {
@@ -40,6 +43,22 @@
     self.titleEdgeInsets = UIEdgeInsetsMake(0, titleX, 0, 0);
     
     [self setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
+}
+
+- (void)makeTopImageButton:(UIImage *)image title:(NSString *)title {
+    [self setImage:image forState:UIControlStateNormal];
+    [self setTitle:title forState:UIControlStateNormal];
+    [self.titleLabel sizeToFit];
+    
+    CGFloat totalHeight = CGRectGetHeight(self.imageView.frame) + CGRectGetHeight(self.titleLabel.frame);
+    self.imageEdgeInsets = UIEdgeInsetsMake(-(totalHeight - CGRectGetHeight(self.imageView.frame)),
+                                            0,
+                                            0,
+                                            -CGRectGetWidth(self.titleLabel.frame));
+    self.titleEdgeInsets = UIEdgeInsetsMake(0,
+                                            -CGRectGetWidth(self.imageView.frame),
+                                            -(totalHeight - CGRectGetHeight(self.titleLabel.frame)),
+                                            0);
 }
 
 @end
