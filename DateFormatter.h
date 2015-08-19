@@ -9,7 +9,11 @@
 
 /// 日付フォーマット
 @interface DateFormatter : NSObject
+/// Locale 情報に左右されない DateFormatter を使いたいとき
 + (NSDateFormatter *)sharedDateFormatter;
+/// Locale 情報に合った DateFormatter を使いたいとき
++ (NSDateFormatter *)sharedLocalizedDateFormatter;
+
 + (NSDateComponents *)dateComponentFromDate:(NSDate *)date;
 
 @end
