@@ -7,6 +7,21 @@
 
 #import "DateFormatter.h"
 
+#import <UIKit/UIKit.h>
+
+
+@interface NSDateFormatter (WithLocale)
+- (void)updateLocales;
+@end
+
+@implementation NSDateFormatter (WithLocale)
+- (void)updateLocales {
+    self.locale = [NSLocale currentLocale];
+    self.timeZone = [NSTimeZone localTimeZone];
+}
+@end
+
+
 @implementation DateFormatter
 
 + (NSDateFormatter *)sharedDateFormatter {
@@ -29,6 +44,11 @@
         sharedLocalizedDateFormatter = [[NSDateFormatter alloc] init];
         sharedLocalizedDateFormatter.locale = [NSLocale currentLocale];
         sharedLocalizedDateFormatter.timeZone = [NSTimeZone localTimeZone];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:sharedLocalizedDateFormatter
+                                                 selector:@selector(updateLocales)
+                                                     name:UIApplicationDidBecomeActiveNotification
+                                                   object:nil];
     });
     return sharedLocalizedDateFormatter;
 }
