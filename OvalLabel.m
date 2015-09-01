@@ -19,15 +19,13 @@
 }
 
 - (void)sizeToFit {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [super sizeToFit];
-        
-        CAShapeLayer *shape = [[CAShapeLayer alloc] init];
-        NSInteger adjust = (CGRectGetHeight(self.bounds) / 2) + 1;
-        shape.path = [UIBezierPath bezierPathWithRoundedRect:self.bounds cornerRadius:adjust].CGPath;
-        self.layer.mask = shape;
-        self.layer.masksToBounds = YES;
-    });
+    [super sizeToFit];
+    
+    CAShapeLayer *shape = [[CAShapeLayer alloc] init];
+    NSInteger adjust = (CGRectGetHeight(self.bounds) / 2) + 1;
+    shape.path = [UIBezierPath bezierPathWithRoundedRect:self.bounds cornerRadius:adjust].CGPath;
+    self.layer.mask = shape;
+    self.layer.masksToBounds = YES;
 }
 
 @end
