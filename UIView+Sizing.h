@@ -11,5 +11,6 @@
 @interface UIView (Sizing)
 /// 高さを文字数または行数に合わせて調整
 - (void)sizeToFitV;
+- (void)sizeToFitV:(CGFloat)adjustV;
 
 @end

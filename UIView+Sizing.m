@@ -10,8 +10,12 @@
 @implementation UIView (Sizing)
 
 - (void)sizeToFitV {
-    CGSize newSize = [self sizeThatFits:CGSizeMake(self.frame.size.width, CGFLOAT_MAX)];
-    self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, newSize.height);
+    [self sizeToFitV:0];
+}
+
+- (void)sizeToFitV:(CGFloat)adjustV {
+    CGSize newSize = [self sizeThatFits:CGSizeMake(self.frame.size.width, 0)];
+    self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, newSize.height + adjustV);
 }
 
 @end
